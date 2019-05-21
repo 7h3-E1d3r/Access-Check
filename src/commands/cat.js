@@ -62,7 +62,7 @@ function cat (env, args) {
     .all(args.map(function (path) {
       return env.system.read(path).then(null, function (err) {
         exitCode = 1
-        return 'cat: ' + err
+        return 'cat1: ' + err
       })
     }))
     .then(function (contents) {
