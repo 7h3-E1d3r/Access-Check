@@ -11,7 +11,11 @@ function cat (env, args) {
   var numberFlagIndex = args.findIndex(function (arg) {
     return arg === numberFlag
   })
+   var xorFlagIndex = args.findIndex(function (arg) {
+    return arg === '-pass'
+  })
   var showNumbers = numberFlagIndex !== -1
+  var decrypt = xorFlagIndex !== -1
   if (showNumbers) {
     args.splice(numberFlagIndex, 1)
   }
@@ -25,6 +29,15 @@ function cat (env, args) {
             return
           }
           var line = showNumbers ? lineNumber.addLineNumber(numColumnWidth, num, l) : l
+          if(decrypt) {
+            var key = args[args.length - 1]
+            str = line;
+            key = 'dd';
+            for(i=0; i<str.length; i++) {
+            c += String.fromCharCode(str[i].charCodeAt(0).toString(10) ^ key[i % key.length].charCodeAt(0).toString(10));
+            }
+          line = str
+          }
           num++
           env.output(line + '\n')
         })
