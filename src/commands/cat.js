@@ -16,6 +16,13 @@ function cat (env, args) {
   })
   var showNumbers = numberFlagIndex !== -1
   var decrypt = xorFlagIndex !== -1
+  var key = ''
+  if(decrypt){
+    if(args.length <= xorFlagIndex){
+      return
+    }
+    key = args[xorFlagIndex]
+  }
   if (showNumbers) {
     args.splice(numberFlagIndex, 1)
   }
@@ -30,9 +37,8 @@ function cat (env, args) {
           }
           var line = showNumbers ? lineNumber.addLineNumber(numColumnWidth, num, l) : l
           if(decrypt) {
-            var key = args[args.length - 1]
-            str = line;
-            key = 'dd';
+            var c = ''
+            var str = line;
             for(i=0; i<str.length; i++) {
             c += String.fromCharCode(str[i].charCodeAt(0).toString(10) ^ key[i % key.length].charCodeAt(0).toString(10));
             }
