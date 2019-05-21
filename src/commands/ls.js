@@ -1,10 +1,7 @@
 // NOTE: No support for files yet
 
 var disclaimer =
-  '\n' +
-  'The output here is limited.' +
-  '\n' +
-  'On a real system you would also see file permissions, user, group, block size and more.'
+  ''
 
 function ls (env, args) {
   // Ignore command name
