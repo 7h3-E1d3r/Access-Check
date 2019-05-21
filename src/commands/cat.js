@@ -18,9 +18,11 @@ function cat (env, args) {
   var decrypt = xorFlagIndex !== -1
   var key = ''
   if(decrypt){
+    console.log('decrypting')
     if(args.length <= xorFlagIndex){
       return
     }
+    console.log('No return')
     key = args[xorFlagIndex]
     args.splice(xorFlagIndex, 1)
     args.splice(xorFlagIndex, 1)
