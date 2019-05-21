@@ -22,6 +22,8 @@ function cat (env, args) {
       return
     }
     key = args[xorFlagIndex]
+    args.splice(xorFlagIndex, 1)
+    args.splice(xorFlagIndex, 1)
   }
   if (showNumbers) {
     args.splice(numberFlagIndex, 1)
